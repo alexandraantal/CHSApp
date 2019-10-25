@@ -1,52 +1,27 @@
-import React, {Component} from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, Text, View, Dimensions, Button } from "react-native";
 //import { Google } from 'expo';
 
-import FetchLocation from './components/FetchLocation';
-import UsersMap from './components/UsersMap';
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 
-export default class App extends React.Component {
+import HomeScreen from "./screens/HomeScreen";
+import MapScreen from "./screens/MapScreen";
 
-  state = {
-    userLocation: null
-  }
+const MainNavigator = createStackNavigator({
+  Home: { screen: HomeScreen },
+  Map: { screen: MapScreen }
+});
 
-  // const GET_LOCATION_OPTIONS = {
-  //   enableHighAccuracy: false,
-  //   timeout: 20000,
-  //   maximumAge: 1000,
-  //  };
+const App = createAppContainer(MainNavigator);
 
-  getUserLocationHandler = () => {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-        this.setState ({
-          userLocation: {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-            latitudeDelta: 0.0622,
-            longitudeDelta: 0.0421
-          }
-        });
-      }, (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 });
-  };
-
-  render(){
-  return (
-    <View style={styles.container}>
-      <FetchLocation onGetLocation={this.getUserLocationHandler}/>
-    <UsersMap userLocation={this.state.userLocation}/>
-    </View>
-  );
-  }
-}
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  }
 });
