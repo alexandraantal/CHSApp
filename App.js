@@ -7,10 +7,14 @@ import { createStackNavigator } from "react-navigation-stack";
 
 import HomeScreen from "./screens/HomeScreen";
 import MapScreen from "./screens/MapScreen";
+import LoginScreen from "./screens/LoginScreen";
+import SignUpScreen from "./screens/SignUpScreen";
 
 const MainNavigator = createStackNavigator({
   Home: { screen: HomeScreen },
-  Map: { screen: MapScreen }
+  Map: { screen: MapScreen },
+  Login: { screen: LoginScreen },
+  SignUp: { screen: SignUpScreen }
 });
 
 const App = createAppContainer(MainNavigator);
