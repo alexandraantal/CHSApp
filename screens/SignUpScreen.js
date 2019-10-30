@@ -29,7 +29,7 @@ class SignUpScreen extends React.Component {
   signUpUser = (email, password) => {
     try {
       if (this.state.password.length < 6) {
-        alert("Please entern at least 6 characters");
+        alert("Please enter at least 6 characters");
         return;
       }
 
@@ -70,7 +70,6 @@ class SignUpScreen extends React.Component {
             }}
             full
             rounded
-            primary
             onPress={() =>
               this.signUpUser(this.state.email, this.state.password)
             }
@@ -86,8 +85,9 @@ class SignUpScreen extends React.Component {
             }}
             full
             rounded
-            primary
-            onPress={() => this.props.navigation.navigate("Login")}
+            onPress={() => {
+              this.props.navigation.navigate("Login");
+            }}
           >
             <Text style={{ color: "white" }}>Already a member? Log In</Text>
           </Button>
