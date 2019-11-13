@@ -1,0 +1,21 @@
+[
+    {
+      "name": "Spitalul Judetean",
+      "address": "Bulevardul Liviu Rebreanu 156, Timișoara 300723",
+      "coords": {
+        "latitude": 45.737486,
+        "longitude": 21.241410
+      },
+      "image_url": "https://www.hosptm.ro/wp-content/uploads/2015/05/SCJUPBT_01.jpg"
+    },
+    {
+      "name": "Turtle Lake",
+      "address": "Turtle Lake, phường 6, District 3, Ho Chi Minh City",
+      "coords": {
+        "latitude": 45.740556,
+        "longitude": 21.244167
+      },
+      "image_url": "http://dreamercosmetic.com/uploads/source/chekd101/trangdiem/bomyphamchanel5moncaocap11600x450.jpg"
+    }
+
+  ]

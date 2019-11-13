@@ -32,4 +32,6 @@ target 'shareplaces' do
 
   use_unimodules!
 
+  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+
 end

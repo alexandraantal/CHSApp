@@ -17,6 +17,7 @@ const fetchLocation = props => {
     >
       <Text style={{ color: "white" }}>Get Location</Text>
     </Button>
+    
   );
 };
 

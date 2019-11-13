@@ -12,7 +12,7 @@ import SignUpScreen from "./screens/SignUpScreen";
 
 const MainNavigator = createStackNavigator({
   Home: { screen: HomeScreen },
-  Map: { screen: MapScreen },
+  Map: { screen: MapScreen},
   Login: { screen: LoginScreen },
   SignUp: { screen: SignUpScreen }
 });
