@@ -1,14 +1,13 @@
 import * as firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBGpwnDWvGvQ2Y5uk4EzPlIu0bBvx0HseE",
-  authDomain: "chsapp-46fe4.firebaseapp.com",
-  databaseURL: "https://chsapp-46fe4.firebaseio.com",
-  projectId: "chsapp-46fe4",
-  storageBucket: "chsapp-46fe4.appspot.com",
-  messagingSenderId: "738797535799",
-  appId: "1:738797535799:web:98be15b17687e9523eb5b2",
-  measurementId: "G-LZ1QEN0FQB"
+  apiKey: "AIzaSyAcsUaO17LTBre1vZwmweByPCWSdxpOt_w",
+  authDomain: "seistm-3d5ab.firebaseapp.com",
+  databaseURL: "https://seistm-3d5ab.firebaseio.com",
+  projectId: "seistm-3d5ab",
+  storageBucket: "seistm-3d5ab.appspot.com",
+  messagingSenderId: "982778909657",
+  appId: "1:982778909657:web:55b1441ff2635e8ea3ffc8"
 };
 
 firebase.initializeApp(firebaseConfig);

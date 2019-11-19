@@ -1,108 +1,137 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  StatusBar,
+  LayoutAnimation
+} from "react-native";
 
 import * as firebase from "firebase";
 
-import Firebase from "../components/Firebase";
+export default class SignUpScreen extends React.Component {
+  state = {
+    email: "",
+    password: "",
+    errorMessage: null
+  };
 
-import {
-  Container,
-  Content,
-  Header,
-  Form,
-  Input,
-  Item,
-  Button,
-  Label
-} from "native-base";
-
-class SignUpScreen extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
-
-  signUpUser = (email, password) => {
-    try {
-      if (this.state.password.length < 6) {
-        alert("Please enter at least 6 characters");
-        return;
-      }
-
-      firebase.auth().createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-      console.log(error.toString());
-    }
+  handleSignUp = () => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then(userCredentials => {
+        return userCredentials.user.updateProfile({
+          displayName: this.state.name
+        });
+      })
+      .catch(error => this.setState({ errorMessage: error.message }));
   };
 
   render() {
     return (
-      <Container style={styles.container}>
-        <Form>
-          <Item floatingLabel>
-            <Label>Email</Label>
-            <Input
-              autoCorrect={false}
+      <View style={styles.container}>
+        <Text style={styles.greeting}>{"Hello!\nSign up to get started."}</Text>
+
+        <View style={styles.errorMessage}>
+          {this.state.errorMessage && (
+            <Text style={styles.error}>{this.state.errorMessage}</Text>
+          )}
+        </View>
+
+        <View style={styles.form}>
+          <View>
+            <Text style={styles.inputTitle}>Full Name</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={name => this.setState({ name })}
+              value={this.state.name}
+            ></TextInput>
+          </View>
+
+          <View style={{ marginTop: 32 }}>
+            <Text style={styles.inputTitle}>Email Address</Text>
+            <TextInput
+              style={styles.input}
               autoCapitalize="none"
               onChangeText={email => this.setState({ email })}
-            />
-          </Item>
+              value={this.state.email}
+            ></TextInput>
+          </View>
 
-          <Item floatingLabel>
-            <Label>Password</Label>
-            <Input
-              secureTextEntry={true}
-              autoCorrect={false}
+          <View style={{ marginTop: 32 }}>
+            <Text style={styles.inputTitle}>Password</Text>
+            <TextInput
+              style={styles.input}
+              secureTextEntry
               autoCapitalize="none"
               onChangeText={password => this.setState({ password })}
-            />
-          </Item>
+              value={this.state.password}
+            ></TextInput>
+          </View>
+        </View>
 
-          <Button
-            style={{
-              marginTop: 20,
-              marginHorizontal: 30,
-              backgroundColor: "#6D98BA"
-            }}
-            full
-            rounded
-            onPress={() =>
-              this.signUpUser(this.state.email, this.state.password)
-            }
-          >
-            <Text style={{ color: "white" }}>Sign Up</Text>
-          </Button>
-
-          <Button
-            style={{
-              marginTop: 20,
-              marginHorizontal: 30,
-              backgroundColor: "#C17767"
-            }}
-            full
-            rounded
-            onPress={() => {
-              this.props.navigation.navigate("Login");
-            }}
-          >
-            <Text style={{ color: "white" }}>Already a member? Log In</Text>
-          </Button>
-        </Form>
-      </Container>
+        <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
+          <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign up</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 }
 
-export default SignUpScreen;
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
+    flex: 1
+  },
+  greeting: {
+    marginTop: 32,
+    fontSize: 18,
+    fontWeight: "400",
+    textAlign: "center"
+  },
+  errorMessage: {
+    height: 72,
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 30
+  },
+  form: {
+    marginBottom: 48,
+    marginHorizontal: 30
+  },
+  inputTitle: {
+    color: "#8A8F9E",
+    fontSize: 10,
+    textTransform: "uppercase"
+  },
+  input: {
+    borderBottomColor: "#8A8F9E",
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    height: 40,
+    fontSize: 15,
+    color: "#161F3D"
+  },
+  button: {
+    marginHorizontal: 30,
+    backgroundColor: "#6D98BA",
+    borderRadius: 4,
+    height: 52,
+    alignItems: "center",
     justifyContent: "center"
+  },
+  errorMessage: {
+    height: 72,
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 30
+  },
+  error: {
+    color: "#E9446A",
+    fontSize: 13,
+    fontWeight: "600",
+    textAlign: "center"
   }
 });

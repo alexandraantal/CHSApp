@@ -1,16 +1,45 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Linking } from "react-native";
+
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  LayoutAnimation
+} from "react-native";
 
 import { Button } from "native-base";
 
-class HomeScreen extends React.Component {
+import * as firebase from "firebase";
+
+import Firebase from "./../components/Firebase";
+
+export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
+  };
+
+  state = { email: "", displayName: "" };
+
+  componentDidMount() {
+    const { email, displayName } = firebase.auth().currentUser;
+
+    this.setState({ email, displayName });
+  }
+
+  signOutUser = () => {
+    firebase.auth().signOut();
   };
 
   render() {
     return (
       <View style={styles.container}>
+        <Text>Hi {this.state.email}!</Text>
+
+        <TouchableOpacity style={{ marginTop: 32 }} onPress={this.signOutUser}>
+          <Text>Logout</Text>
+        </TouchableOpacity>
         <Button
           full
           rounded
@@ -27,26 +56,36 @@ class HomeScreen extends React.Component {
         <Button
           full
           rounded
-          onPress={() => this.props.navigation.navigate("Login")}
+          // onPress={() => this.props.navigation.navigate("Map")}
           style={{
             marginTop: 20,
             marginHorizontal: 30,
-            backgroundColor: "#C17767"
+            backgroundColor: "#6D98BA"
           }}
         >
-          <Text style={{ color: "white" }}>Log In</Text>
+          <Text style={{ color: "white" }}>Mark Yourself Safe</Text>
+        </Button>
+
+        <Button
+          full
+          rounded
+          onPress={() => Linking.openURL(`tel:112`)}
+          style={{
+            marginTop: 20,
+            marginHorizontal: 30,
+            backgroundColor: "#6D98BA"
+          }}
+        >
+          <Text style={{ color: "white" }}>Call 112</Text>
         </Button>
       </View>
     );
   }
 }
 
-export default HomeScreen;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"
   }

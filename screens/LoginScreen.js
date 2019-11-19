@@ -1,108 +1,124 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  StatusBar,
+  LayoutAnimation
+} from "react-native";
 
 import * as firebase from "firebase";
 
-import Firebase from "../components/Firebase";
+export default class LoginScreen extends React.Component {
+  state = {
+    email: "",
+    password: "",
+    errorMessage: null
+  };
 
-import {
-  Container,
-  Content,
-  Header,
-  Form,
-  Input,
-  Item,
-  Button,
-  Label
-} from "native-base";
+  handleLogin = () => {
+    const { email, password } = this.state;
 
-class LoginScreen extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
-
-  logInUser = (email, password) => {
-    try {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(function(user) {
-          console.log(user);
-        });
-    } catch (error) {
-      console.log(error.toString());
-    }
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(error => this.setState({ errorMessage: error.message }));
   };
 
   render() {
     return (
-      <Container style={styles.container}>
-        <Form>
-          <Item floatingLabel>
-            <Label>Email</Label>
-            <Input
-              autoCorrect={false}
+      <View style={styles.container}>
+        <Text style={styles.greeting}>{"Hello again.\nWelcome back."}</Text>
+
+        <View style={styles.errorMessage}>
+          {this.state.errorMessage && (
+            <Text style={styles.error}>{this.state.errorMessage}</Text>
+          )}
+        </View>
+
+        <View style={styles.form}>
+          <View>
+            <Text style={styles.inputTitle}>Email address</Text>
+            <TextInput
+              style={styles.input}
               autoCapitalize="none"
               onChangeText={email => this.setState({ email })}
-            />
-          </Item>
-
-          <Item floatingLabel>
-            <Label>Password</Label>
-            <Input
-              secureTextEntry={true}
-              autoCorrect={false}
+              value={this.state.email}
+            ></TextInput>
+          </View>
+          <View style={{ marginTop: 32 }}>
+            <Text style={styles.inputTitle}>Password</Text>
+            <TextInput
+              style={styles.input}
+              secureTextEntry
               autoCapitalize="none"
               onChangeText={password => this.setState({ password })}
-            />
-          </Item>
+              value={this.state.password}
+            ></TextInput>
+          </View>
+        </View>
 
-          <Button
-            style={{
-              marginTop: 20,
-              marginHorizontal: 30,
-              backgroundColor: "#6D98BA"
-            }}
-            full
-            rounded
-            onPress={() =>
-              this.logInUser(this.state.email, this.state.password)
-            }
-          >
-            <Text style={{ color: "white" }}>Log In</Text>
-          </Button>
-
-          <Button
-            style={{
-              marginTop: 20,
-              marginHorizontal: 30,
-              backgroundColor: "#C17767"
-            }}
-            full
-            rounded
-            onPress={() => this.props.navigation.navigate("SignUp")}
-          >
-            <Text style={{ color: "white" }}>
-              New around? Create An Account
-            </Text>
-          </Button>
-        </Form>
-      </Container>
+        <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
+          <Text style={{ color: "#FFF", fontWeight: "500" }}>Log in</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 }
 
-export default LoginScreen;
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
+    flex: 1
+  },
+  greeting: {
+    marginTop: 32,
+    fontSize: 18,
+    fontWeight: "400",
+    textAlign: "center"
+  },
+  errorMessage: {
+    height: 72,
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 30
+  },
+  form: {
+    marginBottom: 48,
+    marginHorizontal: 30
+  },
+  inputTitle: {
+    color: "#8A8F9E",
+    fontSize: 10,
+    textTransform: "uppercase"
+  },
+  input: {
+    borderBottomColor: "#8A8F9E",
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    height: 40,
+    fontSize: 15,
+    color: "#161F3D"
+  },
+  button: {
+    marginHorizontal: 30,
+    backgroundColor: "#6D98BA",
+    borderRadius: 4,
+    height: 52,
+    alignItems: "center",
     justifyContent: "center"
+  },
+  errorMessage: {
+    height: 72,
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 30
+  },
+  error: {
+    color: "#E9446A",
+    fontSize: 13,
+    fontWeight: "600",
+    textAlign: "center"
   }
 });
