@@ -6,6 +6,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/vector-icons": "^10.0.6",
     "@mapbox/polyline": "^1.1.0",
     "expo": "^35.0.0",
     "expo-constants": "^7.0.0",
@@ -26,7 +27,8 @@
     "react-native-unimodules": "~0.5.4",
     "react-native-web": "^0.11.7",
     "react-navigation": "^4.0.10",
-    "react-navigation-stack": "^1.10.2"
+    "react-navigation-stack": "^1.10.2",
+    "react-navigation-tabs": "^2.6.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^7.0.0"

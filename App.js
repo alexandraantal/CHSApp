@@ -4,17 +4,51 @@ import { StyleSheet, Text, View, Dimensions, Button } from "react-native";
 
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+import { createBottomTabNavigator } from "react-navigation-tabs";
+import { Ionicons } from "@expo/vector-icons";
 
 import AuthHomeScreen from "./screens/AuthHomeScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LoadingScreen from "./screens/LoadingScreen";
-import MapScreen from "./screens/MapScreen";
+import MapHomeScreen from "./screens/MapHomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignUpScreen from "./screens/SignUpScreen";
+import MapMarkerScreen from "./screens/MapMarkerScreen";
+import MapBuildingScreen from "./screens/MapBuildingScreen";
+import MapRouteScreen from "./screens/MapRouteScreen";
+
+const AppTabNavigator = createBottomTabNavigator(
+  {
+    Map: {
+      screen: MapHomeScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-map" size={24} color={tintColor} />
+      }
+    },
+    RefugePoints: {
+      screen: MapMarkerScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-locate" size={24} color={tintColor} />
+      }
+    },
+    BuildingRiskRates: {
+      screen: MapBuildingScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-home" size={24} color={tintColor} />
+      }
+    },
+    EscapeRoute: {
+      screen: MapRouteScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-flag" size={24} color={tintColor} />
+      }
+    }
+  }
+)
 
 const AppStack = createStackNavigator({
   Home: HomeScreen,
-  Map: MapScreen
+  Map: AppTabNavigator
 });
 
 const AuthStack = createStackNavigator({

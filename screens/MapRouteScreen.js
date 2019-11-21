@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Dimensions, Button, Image } from "react-native";
+import { StyleSheet, Text, View, Dimensions, Button, Image} from "react-native";
 import { Marker } from "react-native-maps";
 
 import MapView from "react-native-maps";
@@ -220,7 +220,7 @@ var mapStyle = [
     }
   ];
 
-class MapScreenOk extends React.Component {
+class MapRouteScreen extends React.Component {
   state = {
     latitude: null,
     longitude: null,
@@ -313,7 +313,7 @@ class MapScreenOk extends React.Component {
       </View>
     )
   }
-  
+
 
   render() {
     const {
@@ -354,6 +354,7 @@ class MapScreenOk extends React.Component {
               customMapStyle={mapStyle}
               
         >
+          
         {this.renderMarkers()}
         { this.state.coords && 
         <MapView.Polyline
@@ -371,8 +372,10 @@ class MapScreenOk extends React.Component {
             position: 'absolute',
             bottom: height * 0.05
           }}
-        />  
+        />
+        
         </MapView>
+      
         </>
         );}
 
@@ -386,7 +389,7 @@ class MapScreenOk extends React.Component {
      
   }
 
-export default MapScreenOk;
+export default MapRouteScreen;
 
 const styles = StyleSheet.create({
     container: {
@@ -395,4 +398,5 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    
   });
