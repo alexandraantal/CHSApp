@@ -15,6 +15,10 @@ import * as firebase from "firebase";
 
 import Firebase from "./../components/Firebase";
 
+import { Notifications } from "expo";
+import * as Permissions from "expo-permissions";
+import settingTimerWorkAround from "./../settingTimerWorkAround";
+
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
@@ -22,7 +26,38 @@ export default class HomeScreen extends React.Component {
 
   state = { email: "", displayName: "" };
 
+  registerForPushNotifications = async () => {
+    //Check for existing permissions
+    const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+    let finalStatus = status;
+
+    //If no existing permissions, ask user for permission
+    if (status != "granted") {
+      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+      finalState = status;
+    }
+
+    //If no permission, exit function
+    if (finalStatus != "granted") {
+      return;
+    }
+
+    //Get push notification token
+    let token = await Notifications.getExpoPushTokenAsync();
+
+    //Add token to firebase
+    let uid = firebase.auth().currentUser.uid;
+    firebase
+      .database()
+      .ref("users")
+      .child(uid)
+      .update({
+        expoPushToken: token
+      });
+  };
+
   componentDidMount() {
+    this.registerForPushNotifications();
     const { email, displayName } = firebase.auth().currentUser;
 
     this.setState({ email, displayName });

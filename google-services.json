@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "982778909657",
+    "firebase_url": "https://seistm-3d5ab.firebaseio.com",
+    "project_id": "seistm-3d5ab",
+    "storage_bucket": "seistm-3d5ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982778909657:android:e9fa9db22e648021a3ffc8",
+        "android_client_info": {
+          "package_name": "com.shareplaces"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982778909657-s3kuauunbnjn351kd1kupgt9anaqlgdd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3Tprh2lfgIpXgS4Fgerwv_f5m1dqLXQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982778909657-s3kuauunbnjn351kd1kupgt9anaqlgdd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
