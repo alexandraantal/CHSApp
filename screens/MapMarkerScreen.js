@@ -249,6 +249,7 @@ class MapMarkerScreen extends React.Component {
               <Marker
                 key={idx}
                 coordinate={{ latitude, longitude }}
+                title={location.name}
                 onPress={this.onMarkerPress(location)}
               />
             )

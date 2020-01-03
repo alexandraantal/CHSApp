@@ -225,7 +225,10 @@ class MapRouteScreen extends React.Component {
     locations: locations
   };
 
+
   async componentDidMount(){
+
+    
 
     navigator.geolocation.getCurrentPosition(
         ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
@@ -238,7 +241,7 @@ class MapRouteScreen extends React.Component {
         desLatitude: sampleLocation.coords.latitude,
         desLongitude: sampleLocation.coords.longitude
       }, this.mergeCoords);
-    //  console.log(locations)
+    
 
   };
 
@@ -260,10 +263,12 @@ class MapRouteScreen extends React.Component {
             const {
               coords: { latitude, longitude }
             } = location
+            
             return (
               <Marker
                 key={idx}
                 coordinate={{ latitude, longitude }}
+                title={location.name}
                 onPress={this.onMarkerPress(location)}
               />
             )
@@ -288,11 +293,13 @@ class MapRouteScreen extends React.Component {
       const concatStart = `${latitude},${longitude}`
       const concatEnd = `${desLatitude},${desLongitude}`
       this.getDirections(concatStart, concatEnd)
+     
     }
   }
 
   async getDirections(startLoc, desLoc) {
     try {
+     
       const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&key=${GOOGLE_MAP_APIKEY}`)
       const respJson = await resp.json();
      const response = respJson.routes[0]
@@ -311,6 +318,8 @@ class MapRouteScreen extends React.Component {
       console.log('Error: ', error)
     }
   }
+
+  
 
   render() {
     const {
