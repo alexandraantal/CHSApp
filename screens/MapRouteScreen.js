@@ -245,8 +245,10 @@ class MapRouteScreen extends React.Component {
   onMarkerPress = location => () => {
     const { coords: { latitude, longitude } } = location
     this.setState({
-        destination: location
-      })
+      destination: location,
+      desLatitude: latitude,
+      desLongitude: longitude
+    }, this.mergeCoords)
   }
 
   renderMarkers = () => {
