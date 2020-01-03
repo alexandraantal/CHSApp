@@ -261,8 +261,7 @@ class MapMarkerScreen extends React.Component {
   render() {
     const {
         latitude,
-        longitude,
-        destination
+        longitude
        } = this.state
   
         if(latitude) {
@@ -280,17 +279,6 @@ class MapMarkerScreen extends React.Component {
         > 
         {this.renderMarkers()} 
         </MapView>
-        <Image
-          source={{ uri: destination && destination.image_url }}
-          style={{
-            flex: 1,
-            width: width * 0.95,
-            alignSelf: 'center',
-            height: height * 0.15,
-            position: 'absolute',
-            bottom: height * 0.05
-          }}
-        />
         </>
         );}
 

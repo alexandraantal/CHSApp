@@ -1,21 +1,83 @@
 [
     {
-      "name": "Spitalul Judetean",
+      "name": "Spitalul Clinic Județean de Urgență \"Pius Brînzeu\" Timișoara",
       "address": "Bulevardul Liviu Rebreanu 156, Timișoara 300723",
       "coords": {
-        "latitude": 45.737486,
-        "longitude": 21.241410
-      },
-      "image_url": "https://www.hosptm.ro/wp-content/uploads/2015/05/SCJUPBT_01.jpg"
+        "latitude": 45.7373302,
+        "longitude": 21.2405882
+      }
     },
     {
-      "name": "Turtle Lake",
-      "address": "Turtle Lake, phường 6, District 3, Ho Chi Minh City",
+      "name": "Institutul de Boli Cardiovasculare Timișoara",
+      "address": "Strada Gheorghe Adam Numarul 13A, Timișoara",
       "coords": {
-        "latitude": 45.740556,
-        "longitude": 21.244167
-      },
-      "image_url": "http://dreamercosmetic.com/uploads/source/chekd101/trangdiem/bomyphamchanel5moncaocap11600x450.jpg"
+        "latitude": 45.7692665,
+        "longitude": 21.2570788
+      }
+    },
+    {
+      "name": "Spitalul Militar de Urgență Dr. Victor Popescu",
+      "address": "Strada Gheorghe Lazăr 7, Timișoara",
+      "coords": {
+        "latitude": 45.7570281,
+        "longitude": 21.2247739
+      }
+    },
+    {
+      "name": "Spitalul Clinic Municipal de Urgență Timisoara",
+      "address": "Strada Gheorghe Dima nr.5, Timișoara 300254",
+      "coords": {
+        "latitude": 45.7593598,
+        "longitude": 21.2261686
+      }
+    },
+    {
+      "name": "Spitalul Clinic de Urgență pentru Copii Louis Țurcanu",
+      "address": "Strada Doctor Iosif Nemoianu 2, Timișoara 300011",
+      "coords": {
+        "latitude": 45.7538392,
+        "longitude": 21.2214426
+      }
+    },
+    {
+      "name": "Maternitatea Bega",
+      "address": "Bulevardul Victor Babeș 12, Timișoara 300226",
+      "coords": {
+        "latitude": 45.7443699,
+        "longitude": 21.228875
+      }
+    },
+    {
+      "name": "Clinica de Dermato-venerologie Timisoara",
+      "address": "Strada Ofcea 24, Timișoara",
+      "coords": {
+        "latitude": 45.7518973,
+        "longitude": 21.2415547
+      }
+    },
+    {
+      "name": "Spitalul Clinic Căi Ferate",
+      "address": "Splaiul Tudor Vladimirescu 13-15, Timișoara",
+      "coords": {
+        "latitude": 45.7500669,
+        "longitude": 21.2176992
+      }
+    },
+    {
+      "name": "Spitalul Clinic de Obstetrică-Ginecologie \"Dr. Dumitru Popescu\" ",
+      "address": "Bulevardul 16 Decembrie 1989 22-24, Timișoara",
+      "coords": {
+        "latitude": 45.7449497,
+        "longitude": 21.2144269
+      }
+    },
+    {
+      "name": "Clinica de Neuropsihiatrie Infantilă",
+      "address": "Strada Corbului, Timișoara 300425",
+      "coords": {
+        "latitude": 45.7418275,
+        "longitude": 21.2176884
+      }
     }
 
   ]

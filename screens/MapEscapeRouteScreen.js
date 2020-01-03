@@ -2,9 +2,11 @@ import React from "react";
 import { StyleSheet, Text, View, Dimensions, Button, Image} from "react-native";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
+import Polyline from "@mapbox/polyline";
 
 const locations = require('./../locations.json');
 const { width, height } = Dimensions.get('screen');
+const GOOGLE_MAP_APIKEY = 'AIzaSyB_1OsFmvwn5K3s8NOyOrqJXibIjnzHZI4';
 
 var mapStyle = [
     {
@@ -216,16 +218,27 @@ var mapStyle = [
   ];
 
 
-class MapBuildingScreen extends React.Component {
+class MapEscapeRouteScreen extends React.Component {
   state = {
-      latitude: 45.7494,
-      longitude: 21.2272,
+      latitude: null,
+      longitude: null,
     locations: locations
   };
 
   async componentDidMount(){
 
+    navigator.geolocation.getCurrentPosition(
+        ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
+        (error) => this.setState({ error: error.message })
+      );
+
     const { locations: [ sampleLocation ] } = this.state;
+
+    this.setState({
+        desLatitude: sampleLocation.coords.latitude,
+        desLongitude: sampleLocation.coords.longitude
+      }, this.mergeCoords);
+    //  console.log(locations)
 
   };
 
@@ -258,16 +271,74 @@ class MapBuildingScreen extends React.Component {
     )
   }
 
+  mergeCoords = () => {
+    const {
+      latitude,
+      longitude,
+      desLatitude,
+      desLongitude
+    } = this.state
+    
+
+    const hasStartAndEnd = latitude !== null && desLatitude !== null
+
+    if (hasStartAndEnd) {
+      const concatStart = `${latitude},${longitude}`
+      const concatEnd = `${desLatitude},${desLongitude}`
+      this.getDirections(concatStart, concatEnd)
+    }
+  }
+
+  async getDirections(startLoc, desLoc) {
+    try {
+      const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&key=${GOOGLE_MAP_APIKEY}`)
+      const respJson = await resp.json();
+     const response = respJson.routes[0]
+     const distanceTime = response.legs[0]
+     const distance = distanceTime.distance.text
+     const time = distanceTime.duration.text
+      const points = Polyline.decode(respJson.routes[0].overview_polyline.points);
+      const coords = points.map(point => {
+        return {
+          latitude: point[0],
+          longitude: point[1]
+        }
+      })
+       this.setState({  coords, distance, time })
+    } catch(error) {
+      console.log('Error: ', error)
+    }
+  }
+
   render() {
     const {
         latitude,
-        longitude
+        longitude,
+        destination,
+        coords,
+        distance,
+        time
        } = this.state
   
         if(latitude) {
         return (
             <>
+             <View
+            style={{
+              width,
+              paddingTop: 10,
+              paddingBottom: 10,
+              alignSelf: 'center',
+              alignItems: 'center',
+              height: height * 0.10,
+              backgroundColor: 'white',
+              justifyContent: 'flex-end',
+            }}>
+            <Text style={{ fontWeight: 'bold' }}>Estimated Time: {time}</Text>
+            <Text style={{ fontWeight: 'bold' }}>Estimated Distance: {distance}</Text>
+          </View>
        <MapView
+         showsUserLocation
             style={{flex: 1}}
             initialRegion={{
                 latitude,    
@@ -278,8 +349,24 @@ class MapBuildingScreen extends React.Component {
               customMapStyle={mapStyle}  
         > 
         {this.renderMarkers()} 
+        { this.state.coords && 
+        <MapView.Polyline
+            strokeWidth={2}
+            strokeColor="red"
+            coordinates={coords}
+          /> }
         </MapView>
-
+        <Image
+          source={{ uri: destination && destination.image_url }}
+          style={{
+            flex: 1,
+            width: width * 0.95,
+            alignSelf: 'center',
+            height: height * 0.15,
+            position: 'absolute',
+            bottom: height * 0.05
+          }}
+        />
         </>
         );}
 
@@ -293,7 +380,7 @@ class MapBuildingScreen extends React.Component {
      
   }
 
-export default MapBuildingScreen;
+export default MapEscapeRouteScreen;
 
 const styles = StyleSheet.create({
     container: {
