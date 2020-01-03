@@ -229,32 +229,24 @@ class MapEscapeRouteScreen extends React.Component {
   async componentDidMount(){
 
     navigator.geolocation.getCurrentPosition(
-        ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
+        ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }),
         (error) => this.setState({ error: error.message })
       );
 
     const { locations: [ sampleLocation ] } = this.state;
-
-    this.setState({
-        desLatitude: sampleLocation.coords.latitude,
-        desLongitude: sampleLocation.coords.longitude
-      }, this.mergeCoords);
-    //  console.log(locations)
 
   };
 
   onMarkerPress = location => () => {
     const { coords: { latitude, longitude } } = location
     this.setState({
-      destination: location,
-      desLatitude: latitude,
-      desLongitude: longitude
-    }, this.mergeCoords)
+      destination: location
+    })
   }
 
   calculateDistance(lat1, lon1, lat2, lon2) {
   
-    const R = 6371e3; // earth radius in meters
+    const R = 6371e3; 
     const φ1 = lat1 * (Math.PI / 180);
     const φ2 = lat2 * (Math.PI / 180);
     const Δφ = (lat2 - lat1) * (Math.PI / 180);
@@ -266,31 +258,31 @@ class MapEscapeRouteScreen extends React.Component {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   
     const distance = R * c;
-    return distance; // in meters
+    return distance; 
   }
 
-  renderMarkers = () => {
-    const { locations } = this.state
-    return (
-      <View>
-        {
-          locations.map((location, idx) => {
-            const {
-              coords: { latitude, longitude }
-            } = location
-            return (
-              <Marker
-                key={idx}
-                coordinate={{ latitude, longitude }}
-                title={location.name}
-                onPress={this.onMarkerPress(location)}
-              />
-            )
-          })
-        }
-      </View>
-    )
-  }
+  // renderMarkers = () => {
+  //   const { locations } = this.state
+  //   return (
+  //     <View>
+  //       {
+  //         locations.map((location, idx) => {
+  //           const {
+  //             coords: { latitude, longitude }
+  //           } = location
+  //           return (
+  //             <Marker
+  //               key={idx}
+  //               coordinate={{ latitude, longitude }}
+  //               title={location.name}
+  //               onPress={this.onMarkerPress(location)}
+  //             />
+  //           )
+  //         })
+  //       }
+  //     </View>
+  //   )
+  // }
 
   getCoords = () =>{
     const { locations } = this.state
@@ -304,28 +296,29 @@ class MapEscapeRouteScreen extends React.Component {
      for(i=0; i<11; i++)
      {
       aux=this.calculateDistance(coords1[i].latitude, coords1[i].longitude,this.state.latitude, this.state.longitude)
-      if(aux==min) console.log(coords1[i].latitude,coords1[i].longitude)
-     }
-    
+      if(aux==min) {
+       const concatStart = `${this.state.latitude},${this.state.longitude}`
+       const concatEnd = `${coords1[i].latitude},${coords1[i].longitude}`
+       this.getDirections(concatStart, concatEnd)}
+       
+     <Marker
+     coordinate={ {latitude: coords1[i].latitude, longitude: coords1[i].longitude}}
+    //  title={location.name}
+    //  onPress={this.onMarkerPress(location)}
+     /> 
+
+     } 
   }
 
-  mergeCoords = () => {
-    const {
-      latitude,
-      longitude,
-      desLatitude,
-      desLongitude
-    } = this.state
+  // mergeCoords = () => {
+  //   const {
+  //     latitude,
+  //     longitude,
+  //     desLatitude,
+  //     desLongitude
+  //   } = this.state
     
-
-    const hasStartAndEnd = latitude !== null && desLatitude !== null
-
-    if (hasStartAndEnd) {
-      const concatStart = `${latitude},${longitude}`
-      const concatEnd = `${desLatitude},${desLongitude}`
-      this.getDirections(concatStart, concatEnd)
-    }
-  }
+  //}
 
   async getDirections(startLoc, desLoc) {
     try {
@@ -386,7 +379,7 @@ class MapEscapeRouteScreen extends React.Component {
               }}
               customMapStyle={mapStyle}  
         > 
-        {this.renderMarkers()} 
+        {/* {this.renderMarkers()}  */}
         {this.getCoords()}
         { this.state.coords && 
         <MapView.Polyline
