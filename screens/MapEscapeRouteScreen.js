@@ -7,6 +7,7 @@ import Polyline from "@mapbox/polyline";
 const locations = require('./../locations.json');
 const { width, height } = Dimensions.get('screen');
 const GOOGLE_MAP_APIKEY = 'AIzaSyB_1OsFmvwn5K3s8NOyOrqJXibIjnzHZI4';
+min=10000000;
 
 var mapStyle = [
     {
@@ -251,6 +252,23 @@ class MapEscapeRouteScreen extends React.Component {
     }, this.mergeCoords)
   }
 
+  calculateDistance(lat1, lon1, lat2, lon2) {
+  
+    const R = 6371e3; // earth radius in meters
+    const φ1 = lat1 * (Math.PI / 180);
+    const φ2 = lat2 * (Math.PI / 180);
+    const Δφ = (lat2 - lat1) * (Math.PI / 180);
+    const Δλ = (lon2 - lon1) * (Math.PI / 180);
+  
+    const a = (Math.sin(Δφ / 2) * Math.sin(Δφ / 2)) +
+              ((Math.cos(φ1) * Math.cos(φ2)) * (Math.sin(Δλ / 2) * Math.sin(Δλ / 2)));
+    
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  
+    const distance = R * c;
+    return distance; // in meters
+  }
+
   renderMarkers = () => {
     const { locations } = this.state
     return (
@@ -264,6 +282,7 @@ class MapEscapeRouteScreen extends React.Component {
               <Marker
                 key={idx}
                 coordinate={{ latitude, longitude }}
+                title={location.name}
                 onPress={this.onMarkerPress(location)}
               />
             )
@@ -271,6 +290,23 @@ class MapEscapeRouteScreen extends React.Component {
         }
       </View>
     )
+  }
+
+  getCoords = () =>{
+    const { locations } = this.state
+    const coords1 = locations.map(p => p.coords)
+     for(i=0; i<11; i++)
+     {
+       aux=this.calculateDistance(coords1[i].latitude, coords1[i].longitude,this.state.latitude, this.state.longitude)
+       if(aux<min) min=aux
+     }
+
+     for(i=0; i<11; i++)
+     {
+      aux=this.calculateDistance(coords1[i].latitude, coords1[i].longitude,this.state.latitude, this.state.longitude)
+      if(aux==min) console.log(coords1[i].latitude,coords1[i].longitude)
+     }
+    
   }
 
   mergeCoords = () => {
@@ -351,6 +387,7 @@ class MapEscapeRouteScreen extends React.Component {
               customMapStyle={mapStyle}  
         > 
         {this.renderMarkers()} 
+        {this.getCoords()}
         { this.state.coords && 
         <MapView.Polyline
             strokeWidth={2}

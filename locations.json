@@ -32,6 +32,14 @@
       }
     },
     {
+      "name": "Spitalul Județean de Urgență Reșița",
+      "address": "Aleea Herculane 8, Reșița 320154",
+      "coords": {
+        "latitude": 45.3247335,
+        "longitude": 21.8812834
+      }
+    },
+    {
       "name": "Spitalul Clinic de Urgență pentru Copii Louis Țurcanu",
       "address": "Strada Doctor Iosif Nemoianu 2, Timișoara 300011",
       "coords": {

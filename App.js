@@ -15,7 +15,7 @@ import LoginScreen from "./screens/LoginScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import MapMarkerScreen from "./screens/MapMarkerScreen";
 import MapBuildingScreen from "./screens/MapBuildingScreen";
-import MapRouteScreen from "./screens/MapRouteScreen";
+import MapEscapeRouteScreen from "./screens/MapEscapeRouteScreen";
 
 const AppTabNavigator = createBottomTabNavigator({
   Map: {
@@ -43,7 +43,7 @@ const AppTabNavigator = createBottomTabNavigator({
     }
   },
   EscapeRoute: {
-    screen: MapRouteScreen,
+    screen: MapEscapeRouteScreen,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
         <Ionicons name="ios-flag" size={24} color={tintColor} />
