@@ -8,6 +8,8 @@ const locations = require('./../locations.json');
 const { width, height } = Dimensions.get('screen');
 const GOOGLE_MAP_APIKEY = 'AIzaSyB_1OsFmvwn5K3s8NOyOrqJXibIjnzHZI4';
 min=10000000;
+let lat1;
+let long1;
 
 var mapStyle = [
     {
@@ -297,28 +299,26 @@ class MapEscapeRouteScreen extends React.Component {
      {
       aux=this.calculateDistance(coords1[i].latitude, coords1[i].longitude,this.state.latitude, this.state.longitude)
       if(aux==min) {
+         lat1 = coords1[i].latitude
+         long1 = coords1[i].longitude
+
        const concatStart = `${this.state.latitude},${this.state.longitude}`
        const concatEnd = `${coords1[i].latitude},${coords1[i].longitude}`
-       this.getDirections(concatStart, concatEnd)}
-       
-     <Marker
-     coordinate={ {latitude: coords1[i].latitude, longitude: coords1[i].longitude}}
-    //  title={location.name}
-    //  onPress={this.onMarkerPress(location)}
-     /> 
-
+      
+       this.getDirections(concatStart, concatEnd)} 
+        
      } 
+return(
+    <View>
+          <MapView.Marker
+          key={{idx: 1}}
+          coordinate={{latitude: lat1, longitude: long1}}
+         //  title={location.name}
+         //  onPress={this.onMarkerPress(location)}
+          /> 
+     </View> 
+)
   }
-
-  // mergeCoords = () => {
-  //   const {
-  //     latitude,
-  //     longitude,
-  //     desLatitude,
-  //     desLongitude
-  //   } = this.state
-    
-  //}
 
   async getDirections(startLoc, desLoc) {
     try {
@@ -379,7 +379,6 @@ class MapEscapeRouteScreen extends React.Component {
               }}
               customMapStyle={mapStyle}  
         > 
-        {/* {this.renderMarkers()}  */}
         {this.getCoords()}
         { this.state.coords && 
         <MapView.Polyline
