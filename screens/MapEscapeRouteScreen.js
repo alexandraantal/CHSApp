@@ -8,8 +8,6 @@ const locations = require('./../locations.json');
 const { width, height } = Dimensions.get('screen');
 const GOOGLE_MAP_APIKEY = 'AIzaSyB_1OsFmvwn5K3s8NOyOrqJXibIjnzHZI4';
 min=10000000;
-let lat1;
-let long1;
 
 var mapStyle = [
     {
@@ -263,44 +261,26 @@ class MapEscapeRouteScreen extends React.Component {
     return distance; 
   }
 
-  // renderMarkers = () => {
-  //   const { locations } = this.state
-  //   return (
-  //     <View>
-  //       {
-  //         locations.map((location, idx) => {
-  //           const {
-  //             coords: { latitude, longitude }
-  //           } = location
-  //           return (
-  //             <Marker
-  //               key={idx}
-  //               coordinate={{ latitude, longitude }}
-  //               title={location.name}
-  //               onPress={this.onMarkerPress(location)}
-  //             />
-  //           )
-  //         })
-  //       }
-  //     </View>
-  //   )
-  // }
-
   getCoords = () =>{
     const { locations } = this.state
     const coords1 = locations.map(p => p.coords)
-     for(i=0; i<11; i++)
+    const names = locations.map(p => p.name)
+
+     for(i=0; i<10; i++)
      {
        aux=this.calculateDistance(coords1[i].latitude, coords1[i].longitude,this.state.latitude, this.state.longitude)
        if(aux<min) min=aux
      }
 
-     for(i=0; i<11; i++)
+     for(i=0; i<10; i++)
      {
       aux=this.calculateDistance(coords1[i].latitude, coords1[i].longitude,this.state.latitude, this.state.longitude)
       if(aux==min) {
+
+        
          lat1 = coords1[i].latitude
          long1 = coords1[i].longitude
+         name1 = names[i]
 
        const concatStart = `${this.state.latitude},${this.state.longitude}`
        const concatEnd = `${coords1[i].latitude},${coords1[i].longitude}`
@@ -313,8 +293,7 @@ return(
           <MapView.Marker
           key={{idx: 1}}
           coordinate={{latitude: lat1, longitude: long1}}
-         //  title={location.name}
-         //  onPress={this.onMarkerPress(location)}
+          title={name1}
           /> 
      </View> 
 )
@@ -387,17 +366,6 @@ return(
             coordinates={coords}
           /> }
         </MapView>
-        <Image
-          source={{ uri: destination && destination.image_url }}
-          style={{
-            flex: 1,
-            width: width * 0.95,
-            alignSelf: 'center',
-            height: height * 0.15,
-            position: 'absolute',
-            bottom: height * 0.05
-          }}
-        />
         </>
         );}
 
