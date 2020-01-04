@@ -9,10 +9,9 @@ import {
 } from "react-native";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
+import { Icon } from "native-base";
 
-const locations = require("./../buildings1.json");
-const locations2 = require("./../buildings2.json");
-const locations3 = require("./../buildings3.json");
+const locations = require("./../buildings.json");
 
 const { width, height } = Dimensions.get("screen");
 
@@ -255,9 +254,15 @@ class MapBuildingScreen extends React.Component {
           const {
             coords: { latitude, longitude }
           } = location;
-          const IconOne = require("./../images/orange-pin.png");
-          const IconTwo = require("./../images/red-pin.png");
-          let icon = location.markerIcon == 1 ? IconOne : IconTwo;
+          const IconOne = require("./../images/yellow-pin.png");
+          const IconTwo = require("./../images/orange-pin.png");
+          const IconThree = require("./../images/red-pin.png");
+
+          let icon;
+
+          if (location.markerIcon == 1) icon = IconOne;
+          if (location.markerIcon == 2) icon = IconTwo;
+          if (location.markerIcon == 3) icon = IconThree;
 
           return (
             <Marker
