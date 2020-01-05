@@ -84,9 +84,8 @@ export default class HomeScreen extends React.Component {
             }}
           >
             Hello,{" "}
-            <Text style={{ fontWeight: "bold" }}>
-              {this.state.displayName}!{" "}
-            </Text>
+            <Text style={{ fontWeight: "bold" }}>{this.state.displayName}</Text>
+            !
           </Text>
 
           <Button
