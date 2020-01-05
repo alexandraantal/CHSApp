@@ -7,6 +7,7 @@ import Polyline from "@mapbox/polyline";
 const locations = require('./../locations.json');
 const { width, height } = Dimensions.get('screen');
 const GOOGLE_MAP_APIKEY = 'AIzaSyB_1OsFmvwn5K3s8NOyOrqJXibIjnzHZI4';
+min=10000000;
 
 var mapStyle = [
     {
@@ -225,87 +226,85 @@ class MapRouteScreen extends React.Component {
     locations: locations
   };
 
-
   async componentDidMount(){
 
-    
-
     navigator.geolocation.getCurrentPosition(
-        ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
+        ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }),
         (error) => this.setState({ error: error.message })
       );
 
     const { locations: [ sampleLocation ] } = this.state;
-
-    this.setState({
-        desLatitude: sampleLocation.coords.latitude,
-        desLongitude: sampleLocation.coords.longitude
-      }, this.mergeCoords);
-    
 
   };
 
   onMarkerPress = location => () => {
     const { coords: { latitude, longitude } } = location
     this.setState({
-      destination: location,
-      desLatitude: latitude,
-      desLongitude: longitude
-    }, this.mergeCoords)
+      destination: location
+    })
   }
 
-  renderMarkers = () => {
-    const { locations } = this.state
-    return (
-      <View>
-        {
-          locations.map((location, idx) => {
-            const {
-              coords: { latitude, longitude }
-            } = location
-            
-            return (
-              <Marker
-                key={idx}
-                coordinate={{ latitude, longitude }}
-                title={location.name}
-                onPress={this.onMarkerPress(location)}
-              />
-            )
-          })
-        }
-      </View>
-    )
-  }
-
-  mergeCoords = () => {
-    const {
-      latitude,
-      longitude,
-      desLatitude,
-      desLongitude
-    } = this.state
+  calculateDistance(lat1, lon1, lat2, lon2) {
+  
+    const R = 6371e3; 
+    const φ1 = lat1 * (Math.PI / 180);
+    const φ2 = lat2 * (Math.PI / 180);
+    const Δφ = (lat2 - lat1) * (Math.PI / 180);
+    const Δλ = (lon2 - lon1) * (Math.PI / 180);
+  
+    const a = (Math.sin(Δφ / 2) * Math.sin(Δφ / 2)) +
+              ((Math.cos(φ1) * Math.cos(φ2)) * (Math.sin(Δλ / 2) * Math.sin(Δλ / 2)));
     
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  
+    const distance = R * c;
+    return distance; 
+  }
 
-    const hasStartAndEnd = latitude !== null && desLatitude !== null
+  getCoords = () =>{
+    const { locations } = this.state
+    const coords1 = locations.map(p => p.coords)
+    const names = locations.map(p => p.name)
 
-    if (hasStartAndEnd) {
-      const concatStart = `${latitude},${longitude}`
-      const concatEnd = `${desLatitude},${desLongitude}`
-      this.getDirections(concatStart, concatEnd)
-     
-    }
+     for(i=0; i<10; i++)
+     {
+       aux=this.calculateDistance(coords1[i].latitude, coords1[i].longitude,this.state.latitude, this.state.longitude)
+       if(aux<min) min=aux
+     }
+
+     for(i=0; i<10; i++)
+     {
+      aux=this.calculateDistance(coords1[i].latitude, coords1[i].longitude,this.state.latitude, this.state.longitude)
+      if(aux==min) {
+
+        
+         lat1 = coords1[i].latitude
+         long1 = coords1[i].longitude
+         name1 = names[i]
+
+       const concatStart = `${this.state.latitude},${this.state.longitude}`
+       const concatEnd = `${coords1[i].latitude},${coords1[i].longitude}`
+      
+       this.getDirections(concatStart, concatEnd)} 
+        
+     } 
+return(
+    <View>
+          <Marker
+          coordinate={{latitude: lat1, longitude: long1}}
+          title={name1}
+          /> 
+     </View> 
+)
   }
 
   async getDirections(startLoc, desLoc) {
     try {
-     
       const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&key=${GOOGLE_MAP_APIKEY}`)
       const respJson = await resp.json();
      const response = respJson.routes[0]
      const distanceTime = response.legs[0]
      const distance = distanceTime.distance.text
-     const time = distanceTime.duration.text
       const points = Polyline.decode(respJson.routes[0].overview_polyline.points);
       const coords = points.map(point => {
         return {
@@ -313,21 +312,19 @@ class MapRouteScreen extends React.Component {
           longitude: point[1]
         }
       })
-       this.setState({  coords, distance, time })
+       this.setState({  coords, distance})
     } catch(error) {
       console.log('Error: ', error)
     }
   }
 
-  
-
   render() {
     const {
         latitude,
         longitude,
+        destination,
         coords,
-        distance,
-        time
+        distance
        } = this.state
   
         if(latitude) {
@@ -340,11 +337,10 @@ class MapRouteScreen extends React.Component {
               paddingBottom: 10,
               alignSelf: 'center',
               alignItems: 'center',
-              height: height * 0.10,
+              height: height * 0.06,
               backgroundColor: 'white',
               justifyContent: 'flex-end',
             }}>
-            <Text style={{ fontWeight: 'bold' }}>Estimated Time: {time}</Text>
             <Text style={{ fontWeight: 'bold' }}>Estimated Distance: {distance}</Text>
           </View>
        <MapView
@@ -358,7 +354,7 @@ class MapRouteScreen extends React.Component {
               }}
               customMapStyle={mapStyle}  
         > 
-        {this.renderMarkers()} 
+        {this.getCoords()}
         { this.state.coords && 
         <MapView.Polyline
             strokeWidth={2}

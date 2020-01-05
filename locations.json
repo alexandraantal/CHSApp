@@ -1,13 +1,5 @@
 [
     {
-      "name": "Spitalul Clinic Județean de Urgență \"Pius Brînzeu\" Timișoara",
-      "address": "Bulevardul Liviu Rebreanu 156, Timișoara 300723",
-      "coords": {
-        "latitude": 45.7373302,
-        "longitude": 21.2405882
-      }
-    },
-    {
       "name": "Institutul de Boli Cardiovasculare Timișoara",
       "address": "Strada Gheorghe Adam Numarul 13A, Timișoara",
       "coords": {
@@ -24,19 +16,19 @@
       }
     },
     {
+      "name": "Spitalul Clinic Județean de Urgență \"Pius Brînzeu\" Timișoara",
+      "address": "Bulevardul Liviu Rebreanu 156, Timișoara 300723",
+      "coords": {
+        "latitude": 45.7373302,
+        "longitude": 21.2405882
+      }
+    },
+    {
       "name": "Spitalul Clinic Municipal de Urgență Timisoara",
       "address": "Strada Gheorghe Dima nr.5, Timișoara 300254",
       "coords": {
         "latitude": 45.7593598,
         "longitude": 21.2261686
-      }
-    },
-    {
-      "name": "Spitalul Județean de Urgență Reșița",
-      "address": "Aleea Herculane 8, Reșița 320154",
-      "coords": {
-        "latitude": 45.3247335,
-        "longitude": 21.8812834
       }
     },
     {
