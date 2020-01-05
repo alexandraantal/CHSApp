@@ -14,6 +14,7 @@ import * as firebase from "firebase";
 
 export default class SignUpScreen extends React.Component {
   state = {
+    name: "",
     email: "",
     password: "",
     errorMessage: null
@@ -75,7 +76,7 @@ export default class SignUpScreen extends React.Component {
         </View>
 
         <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
-          <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign up</Text>
+          <Text style={{ color: "#F5F5F5", fontWeight: "500" }}>Sign up</Text>
         </TouchableOpacity>
       </View>
     );
@@ -90,7 +91,8 @@ const styles = StyleSheet.create({
     marginTop: 32,
     fontSize: 18,
     fontWeight: "400",
-    textAlign: "center"
+    textAlign: "center",
+    color: "#0E687A"
   },
   errorMessage: {
     height: 72,
@@ -116,8 +118,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginHorizontal: 30,
-    backgroundColor: "#6D98BA",
-    borderRadius: 4,
+    backgroundColor: "#0E687A",
+    borderRadius: 50,
     height: 52,
     alignItems: "center",
     justifyContent: "center"

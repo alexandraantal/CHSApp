@@ -18,17 +18,10 @@ import MapBuildingScreen from "./screens/MapBuildingScreen";
 import MapRouteScreen from "./screens/MapRouteScreen";
 
 const AppTabNavigator = createBottomTabNavigator({
-  Map: {
-    screen: MapHomeScreen,
-    navigationOptions: {
-      tabBarIcon: ({ tintColor }) => (
-        <Ionicons name="ios-map" size={24} color={tintColor} />
-      )
-    }
-  },
   RefugePoints: {
     screen: MapMarkerScreen,
     navigationOptions: {
+      title: "Refuge Points",
       tabBarIcon: ({ tintColor }) => (
         <Ionicons name="ios-locate" size={24} color={tintColor} />
       )
@@ -37,6 +30,7 @@ const AppTabNavigator = createBottomTabNavigator({
   BuildingRiskRates: {
     screen: MapBuildingScreen,
     navigationOptions: {
+      title: "Building Risk Rates",
       tabBarIcon: ({ tintColor }) => (
         <Ionicons name="ios-home" size={24} color={tintColor} />
       )
@@ -45,6 +39,7 @@ const AppTabNavigator = createBottomTabNavigator({
   EscapeRoute: {
     screen: MapRouteScreen,
     navigationOptions: {
+      title: "Escape Route",
       tabBarIcon: ({ tintColor }) => (
         <Ionicons name="ios-flag" size={24} color={tintColor} />
       )
