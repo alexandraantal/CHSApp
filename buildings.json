@@ -313,5 +313,474 @@
       "latitude": 45.748345,
       "longitude": 21.217985
     }
+  },
+  {
+    "markerIcon": 3,
+    "coords": {
+      "latitude": 45.748499,
+      "longitude": 21.218293
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.748783,
+      "longitude": 21.218803
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.748931,
+      "longitude": 21.219079
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.749202,
+      "longitude": 21.219412
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.746737,
+      "longitude": 21.21675
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.746929,
+      "longitude": 21.216973
+    }
+  },
+  {
+    "markerIcon": 3,
+    "coords": {
+      "latitude": 45.747169,
+      "longitude": 21.217193
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.747406,
+      "longitude": 21.217414
+    }
+  },
+  {
+    "markerIcon": 3,
+    "coords": {
+      "latitude": 45.747608,
+      "longitude": 21.217645
+    }
+  },
+  {
+    "markerIcon": 3,
+    "coords": {
+      "latitude": 45.747763,
+      "longitude": 21.217793
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.747984,
+      "longitude": 21.218163
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.748132,
+      "longitude": 21.218452
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.748506,
+      "longitude": 21.219194
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.748727,
+      "longitude": 21.219589
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.748931,
+      "longitude": 21.21992
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.749051,
+      "longitude": 21.220167
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.748931,
+      "longitude": 21.220693
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.751656,
+      "longitude": 21.224065
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.751942,
+      "longitude": 21.224356
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.752104,
+      "longitude": 21.224466
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.75255,
+      "longitude": 21.22465
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.753012,
+      "longitude": 21.224904
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.753636,
+      "longitude": 21.225083
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.75403,
+      "longitude": 21.224973
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.753426,
+      "longitude": 21.226043
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.752949,
+      "longitude": 21.225802
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.752502,
+      "longitude": 21.225569
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.752216,
+      "longitude": 21.225443
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.751818,
+      "longitude": 21.225233
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.751406,
+      "longitude": 21.225142
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.751204,
+      "longitude": 21.225483
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.7543,
+      "longitude": 21.226528
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.755015,
+      "longitude": 21.226685
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.754703,
+      "longitude": 21.226782
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.755069,
+      "longitude": 21.227261
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.755706,
+      "longitude": 21.225928
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.755672,
+      "longitude": 21.226451
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.755148,
+      "longitude": 21.227985
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.755404,
+      "longitude": 21.228059
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.755719,
+      "longitude": 21.227974
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.756167,
+      "longitude": 21.226616
+    }
+  },
+  {
+    "markerIcon": 3,
+    "coords": {
+      "latitude": 45.756122,
+      "longitude": 21.227147
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.756304,
+      "longitude": 21.227748
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.756675,
+      "longitude": 21.227245
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.756655,
+      "longitude": 21.227769
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.756575,
+      "longitude": 21.228085
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.756302,
+      "longitude": 21.228031
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.756038,
+      "longitude": 21.228035
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.756937,
+      "longitude": 21.227807
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.757248,
+      "longitude": 21.227866
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.757452,
+      "longitude": 21.22786
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.756954,
+      "longitude": 21.228098
+    }
+  },
+  {
+    "markerIcon": 3,
+    "coords": {
+      "latitude": 45.757218,
+      "longitude": 21.228133
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.757428,
+      "longitude": 21.228238
+    }
+  },
+  {
+    "markerIcon": 3,
+    "coords": {
+      "latitude": 45.757404,
+      "longitude": 21.228774
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.757353,
+      "longitude": 21.229353
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.757798,
+      "longitude": 21.230043
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.75754,
+      "longitude": 21.230016
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.757527,
+      "longitude": 21.230622
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.758437,
+      "longitude": 21.230128
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.758454,
+      "longitude": 21.229798
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.758475,
+      "longitude": 21.229436
+    }
+  },
+  {
+    "markerIcon": 1,
+    "coords": {
+      "latitude": 45.75852,
+      "longitude": 21.229154
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.758479,
+      "longitude": 21.228854
+    }
+  },
+  {
+    "markerIcon": 2,
+    "coords": {
+      "latitude": 45.758542,
+      "longitude": 21.22835
+    }
+  },
+  {
+    "markerIcon": 3,
+    "coords": {
+      "latitude": 45.758227,
+      "longitude": 21.227975
+    }
+  },
+  {
+    "markerIcon": 3,
+    "coords": {
+      "latitude": 45.757667,
+      "longitude": 21.227899
+    }
   }
 ]
