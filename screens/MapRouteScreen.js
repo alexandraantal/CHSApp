@@ -227,9 +227,10 @@ class MapRouteScreen extends React.Component {
   };
 
   async componentDidMount(){
-
+    this.mounted = true
+    
     navigator.geolocation.getCurrentPosition(
-        ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }),
+        ({ coords: { latitude, longitude } }) => { if (this.mounted) this.setState({ latitude, longitude })},
         (error) => this.setState({ error: error.message })
       );
 
@@ -237,9 +238,13 @@ class MapRouteScreen extends React.Component {
 
   };
 
+  async componentWillUnmount(){
+    this.mounted = false;
+}
+
   onMarkerPress = location => () => {
     const { coords: { latitude, longitude } } = location
-    this.setState({
+    if (this.mounted) this.setState({
       destination: location
     })
   }
@@ -312,7 +317,7 @@ return(
           longitude: point[1]
         }
       })
-       this.setState({  coords, distance})
+      if (this.mounted) this.setState({  coords, distance})
     } catch(error) {
       console.log('Error: ', error)
     }
@@ -322,7 +327,6 @@ return(
     const {
         latitude,
         longitude,
-        destination,
         coords,
         distance
        } = this.state
@@ -355,7 +359,7 @@ return(
               customMapStyle={mapStyle}  
         > 
         {this.getCoords()}
-        { this.state.coords && 
+        { this.state.coords && this.mounted &&
         <MapView.Polyline
             strokeWidth={2}
             strokeColor="red"
