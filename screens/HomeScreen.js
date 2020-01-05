@@ -6,7 +6,8 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  LayoutAnimation
+  LayoutAnimation,
+  ImageBackground
 } from "react-native";
 
 import { Button } from "native-base";
@@ -69,51 +70,65 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Hi {this.state.email}!</Text>
+      <ImageBackground
+        style={styles.backgroundImage}
+        source={require("./../images/background.jpg")}
+      >
+        <View style={styles.container}>
+          <Text
+            style={{
+              marginTop: 20,
+              marginBottom: 0,
+              fontSize: 20,
+              color: "#09414D"
+            }}
+          >
+            Hello,{" "}
+            <Text style={{ fontWeight: "bold" }}>
+              {this.state.displayName}!{" "}
+            </Text>
+          </Text>
 
-        <TouchableOpacity style={{ marginTop: 32 }} onPress={this.signOutUser}>
-          <Text>Logout</Text>
-        </TouchableOpacity>
-        <Button
-          full
-          rounded
-          onPress={() => this.props.navigation.navigate("Map")}
-          style={{
-            marginTop: 20,
-            marginHorizontal: 30,
-            backgroundColor: "#6D98BA"
-          }}
-        >
-          <Text style={{ color: "white" }}>Go To Map</Text>
-        </Button>
+          <Button
+            full
+            rounded
+            onPress={() => this.props.navigation.navigate("Map")}
+            style={{
+              marginTop: 15,
+              marginHorizontal: 30,
+              backgroundColor: "#F5F5F5"
+            }}
+          >
+            <Text style={{ color: "#0E687A" }}>Go To Map</Text>
+          </Button>
 
-        <Button
-          full
-          rounded
-          // onPress={() => this.props.navigation.navigate("Map")}
-          style={{
-            marginTop: 20,
-            marginHorizontal: 30,
-            backgroundColor: "#6D98BA"
-          }}
-        >
-          <Text style={{ color: "white" }}>Mark Yourself Safe</Text>
-        </Button>
+          <Button
+            full
+            rounded
+            onPress={() => Linking.openURL(`tel:112`)}
+            style={{
+              marginTop: 20,
+              marginHorizontal: 30,
+              backgroundColor: "#F5F5F5"
+            }}
+          >
+            <Text style={{ color: "#0E687A" }}>Call 112</Text>
+          </Button>
 
-        <Button
-          full
-          rounded
-          onPress={() => Linking.openURL(`tel:112`)}
-          style={{
-            marginTop: 20,
-            marginHorizontal: 30,
-            backgroundColor: "#6D98BA"
-          }}
-        >
-          <Text style={{ color: "white" }}>Call 112</Text>
-        </Button>
-      </View>
+          <Button
+            full
+            rounded
+            onPress={this.signOutUser}
+            style={{
+              marginTop: 50,
+              marginHorizontal: 30,
+              backgroundColor: "#0E687A"
+            }}
+          >
+            <Text style={{ color: "#F5F5F5" }}>Logout</Text>
+          </Button>
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -123,5 +138,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
+  },
+  backgroundImage: {
+    flex: 1,
+    width: "100%",
+    height: "100%"
   }
 });

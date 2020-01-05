@@ -289,8 +289,8 @@ class MapBuildingScreen extends React.Component {
             initialRegion={{
               latitude,
               longitude,
-              latitudeDelta: 0.0622,
-              longitudeDelta: 0.0421
+              latitudeDelta: 0.0412,
+              longitudeDelta: 0.0211
             }}
             customMapStyle={mapStyle}
           >
